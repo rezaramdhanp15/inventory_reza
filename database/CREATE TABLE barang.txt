@@ -1,0 +1,18 @@
+CREATE TABLE barang 
+(
+    id_jenis int PRIMARY KEY,
+    id_barang int,
+    nama_barang varchar(20),
+    harga int ,
+    stok int
+)
+
+INSERT INTO barang VALUES
+(001,101,'Papan tulis',200000,12),
+(002,102,'Jam tangan',200000,10),
+(003,103,'Komputer',10000000,9)
+
+INSERT INTO jenis VALUES
+(001,101),
+(002,102),
+(003,103)
