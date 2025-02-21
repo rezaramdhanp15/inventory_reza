@@ -44,7 +44,7 @@
     </div>
   </div>
 </nav>
-    <h1>Daftar barang</h1>
+    <h1>Daftar Jenis</h1>
     <a href="view_tambah.php" class="btn btn-info" >Tambah disini</a>
     <br>
     <table border = "1" class="table table-success table-striped">
@@ -69,8 +69,7 @@
         <td><?php echo $result['id_jenis'] ?></td>
         <td><?php echo $result['nama_jenis'] ?></td>
         <td> 
-            <a href="" class="btn btn-warning">Edit</a>
-            <a href="" class="btn btn-danger">Hapus</a>
+            <a href="view_edit.php?id_jenis=<?php echo $result['id_jenis']?>" class="btn btn-warning">Edit</a>
         </td>
      </tr>
 <?php

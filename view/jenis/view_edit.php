@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Daftar inventory</title>
+    <title>Tambah Data</title>
 </head>
 <body>
     <div class="container">
@@ -44,54 +44,29 @@
     </div>
   </div>
 </nav>
-    <h1>Daftar barang</h1>
-    <a href="view_tambah.php" class="btn btn-info" >Tambah disini</a>
-    <br>
-    <table border = "1" class="table table-success table-striped">
-      <br>
-  <thead>
-    <tr>
-      <th >#</th>
-      <th >ID barang</th>
-      <th >ID jenis</th>
-      <th >Nama Barang</th>
-      <th >Harga</th>
-      <th >Stok</th>
-      <th >Aksi</th>
-    </tr>
-    <?php
-    include '../../config/koneksi.php';
-    $query = mysqli_query($conn,"SELECT * From barang");
-    $no=1;
-    if(mysqli_num_rows($query)){
-        echo "";
-        while($result=mysqli_fetch_assoc($query)){
-     ?>
-  <tr>
-        <td><?php echo $no ?></td>
-        <td><?php echo $result['id_barang'] ?></td>
-        <td><?php echo $result['id_jenis'] ?></td>
-        <td><?php echo $result['nama_barang'] ?></td>
-        <td><?php echo $result['harga'] ?></td>
-        <td><?php echo $result['stok'] ?></td>
-        <td> 
-            <a href="view_edit.php?id_barang=<?php echo $result['id_barang']?>" class="btn btn-warning">Edit</a>
-            <a href="hapus.php?id_barang=<?php echo $result['id_barang']?>"
-            onclick="return confirm('kamu yakinn mau hapus barang ??')"
-             class="btn btn-danger"><i class="fa-regular fa-trash-can"></i>Hapus</a>
-        </td>
-     </tr>
-     
-<?php
+    </div>
 
-     $no++;
-    }
-}else{
-    echo "data kosong";
-}
-?>
-</table>
+  <div class="container">
+  <h1>Daftar barang</h1>
+  <?php
+  $id_jenis=$_GET['id_jenis'];
+  include '../../config/koneksi.php';
+  $query=mysqli_query($conn, "SELECT * FROM jenis WHERE id_jenis='$id_jenis'");
+  $result=mysqli_fetch_array($query);
+  ?>
+  <form action="proses.php?id_jenis=<?php echo $result['id_jenis']?>" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Id Jenis</label>
+    <input type="number" name="id_jenis" value="<?php echo $result['id_jenis']?>"
+    class="form-control" class="form-number" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
-<script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nama Jenis</label>
+    <input type="text" name="nama_jenis" value="<?php echo $result['nama_jenis']?>"
+    class="form-control" class="form-text" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
 </body>
 </html>
